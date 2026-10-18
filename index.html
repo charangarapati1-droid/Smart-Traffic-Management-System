@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Traffic Management System</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="top-header">
+
+    <div>
+        <h1>🚦 Smart Traffic Management System</h1>
+        <p>Intelligent 4-Way Junction Control</p>
+    </div>
+
+    <div class="system-status">
+        <span class="status-dot"></span>
+        SYSTEM ONLINE
+    </div>
+
+</header>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main-container">
+
+
+    <!-- ================= JUNCTION ================= -->
+
+    <section class="traffic-area">
+
+        <div class="junction">
+
+
+            <!-- NORTH ROAD -->
+
+            <div class="direction north">
+
+                <div class="direction-label">
+                    NORTH
+                </div>
+
+                <div class="traffic-light north-light">
+                    <span class="light red"></span>
+                    <span class="light yellow"></span>
+                    <span class="light green"></span>
+                </div>
+
+                <div class="vehicles north-vehicles">
+                    <span>🚗</span>
+                    <span>🚙</span>
+                    <span>🚕</span>
+                </div>
+
+                <div class="traffic-info">
+
+                    <h3>NORTH</h3>
+
+                    <p>
+                        Vehicles:
+                        <strong id="northCount">25</strong>
+                    </p>
+
+                    <p>
+                        Density:
+                        <strong id="northDensity">MEDIUM</strong>
+                    </p>
+
+                    <p>
+                        Green Time:
+                        <strong id="northTime">40</strong> sec
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- SOUTH ROAD -->
+
+            <div class="direction south">
+
+                <div class="direction-label">
+                    SOUTH
+                </div>
+
+                <div class="traffic-light south-light">
+                    <span class="light red"></span>
+                    <span class="light yellow"></span>
+                    <span class="light green"></span>
+                </div>
+
+                <div class="vehicles south-vehicles">
+                    <span>🚗</span>
+                    <span>🚙</span>
+                    <span>🚌</span>
+                </div>
+
+                <div class="traffic-info">
+
+                    <h3>SOUTH</h3>
+
+                    <p>
+                        Vehicles:
+                        <strong id="southCount">60</strong>
+                    </p>
+
+                    <p>
+                        Density:
+                        <strong id="southDensity">HIGH</strong>
+                    </p>
+
+                    <p>
+                        Green Time:
+                        <strong id="southTime">60</strong> sec
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- EAST ROAD -->
+
+            <div class="direction east">
+
+                <div class="direction-label">
+                    EAST
+                </div>
+
+                <div class="traffic-light east-light">
+                    <span class="light red"></span>
+                    <span class="light yellow"></span>
+                    <span class="light green"></span>
+                </div>
+
+                <div class="vehicles east-vehicles">
+                    <span>🚗</span>
+                    <span>🚙</span>
+                    <span>🚕</span>
+                </div>
+
+                <div class="traffic-info">
+
+                    <h3>EAST</h3>
+
+                    <p>
+                        Vehicles:
+                        <strong id="eastCount">15</strong>
+                    </p>
+
+                    <p>
+                        Density:
+                        <strong id="eastDensity">LOW</strong>
+                    </p>
+
+                    <p>
+                        Green Time:
+                        <strong id="eastTime">20</strong> sec
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- WEST ROAD -->
+
+            <div class="direction west">
+
+                <div class="direction-label">
+                    WEST
+                </div>
+
+                <div class="traffic-light west-light">
+                    <span class="light red"></span>
+                    <span class="light yellow"></span>
+                    <span class="light green"></span>
+                </div>
+
+                <div class="vehicles west-vehicles">
+                    <span>🚗</span>
+                    <span>🚙</span>
+                    <span>🚕</span>
+                </div>
+
+                <div class="traffic-info">
+
+                    <h3>WEST</h3>
+
+                    <p>
+                        Vehicles:
+                        <strong id="westCount">40</strong>
+                    </p>
+
+                    <p>
+                        Density:
+                        <strong id="westDensity">MEDIUM</strong>
+                    </p>
+
+                    <p>
+                        Green Time:
+                        <strong id="westTime">40</strong> sec
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= ROAD INTERSECTION ================= -->
+
+            <div class="road-horizontal"></div>
+
+            <div class="road-vertical"></div>
+
+
+            <!-- ROAD MARKINGS -->
+
+            <div class="road-line horizontal-line"></div>
+
+            <div class="road-line vertical-line"></div>
+
+
+            <!-- CENTER JUNCTION -->
+
+            <div class="junction-center">
+
+                <div class="center-signal">
+                    🚦
+                </div>
+
+                <h2>JUNCTION</h2>
+
+                <p id="currentSignal">
+                    🟢 GREEN: SOUTH
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CONTROL DASHBOARD ================= -->
+
+    <section class="dashboard">
+
+
+        <!-- TRAFFIC CONTROL -->
+
+        <div class="control-card">
+
+            <div class="card-title">
+
+                <h2>📊 Traffic Control</h2>
+
+                <span>LIVE INPUT</span>
+
+            </div>
+
+
+            <div class="input-grid">
+
+                <div class="input-group">
+
+                    <label>North Vehicles</label>
+
+                    <input
+                            type="number"
+                            id="northInput"
+                            value="25"
+                            min="0"
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>South Vehicles</label>
+
+                    <input
+                            type="number"
+                            id="southInput"
+                            value="60"
+                            min="0"
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>East Vehicles</label>
+
+                    <input
+                            type="number"
+                            id="eastInput"
+                            value="15"
+                            min="0"
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>West Vehicles</label>
+
+                    <input
+                            type="number"
+                            id="westInput"
+                            value="40"
+                            min="0"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <button
+                    class="primary-button"
+                    onclick="updateTraffic()"
+            >
+                🔄 UPDATE TRAFFIC
+            </button>
+
+        </div>
+
+
+
+        <!-- EMERGENCY CONTROL -->
+
+        <div class="control-card emergency-card">
+
+            <div class="card-title">
+
+                <h2>🚨 Emergency Priority</h2>
+
+                <span class="emergency-tag">PRIORITY MODE</span>
+
+            </div>
+
+
+            <div class="emergency-controls">
+
+
+                <div class="input-group">
+
+                    <label>Emergency Vehicle</label>
+
+                    <select id="vehicleType">
+
+                        <option value="Ambulance">
+                            🚑 Ambulance
+                        </option>
+
+                        <option value="Fire Truck">
+                            🚒 Fire Truck
+                        </option>
+
+                        <option value="Police Vehicle">
+                            🚓 Police Vehicle
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>Direction</label>
+
+                    <select id="emergencyDirection">
+
+                        <option value="North">North</option>
+
+                        <option value="South">South</option>
+
+                        <option value="East">East</option>
+
+                        <option value="West">West</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="emergency-buttons">
+
+                <button
+                        class="emergency-button"
+                        onclick="reportEmergency()"
+                >
+                    🚨 REPORT EMERGENCY
+                </button>
+
+            </div>
+
+
+            <div
+                    class="emergency-message"
+                    id="emergencyStatus"
+            >
+                No emergency currently active.
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            Smart Traffic Management System
+            • Adaptive Signal Control
+            • Emergency Vehicle Priority
+        </p>
+
+    </footer>
+
+
+</main>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
